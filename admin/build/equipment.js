@@ -1,4 +1,7 @@
-export const rapier = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.rapidStrike = exports.nonproficiencyPenalty = exports.shield = exports.stoneCloak = exports.feet = exports.longbow = exports.crossbow = exports.magicRapier = exports.sonicBlast = exports.antimagicBlast = exports.staff = exports.lightMace = exports.dagger = exports.rapier = void 0;
+exports.rapier = {
     type: 'weapon',
     kind: 'melee',
     slot: 'hand',
@@ -10,7 +13,7 @@ export const rapier = {
     equipped: true,
     skills: ['fencing', 'combatinsight'],
 };
-export const dagger = {
+exports.dagger = {
     type: 'weapon',
     kind: 'melee',
     slot: 'hand',
@@ -22,7 +25,7 @@ export const dagger = {
     equipped: true,
     skills: ['fencing', 'combatinsight'],
 };
-export const lightMace = {
+exports.lightMace = {
     type: 'weapon',
     kind: 'melee',
     slot: 'hand',
@@ -34,7 +37,7 @@ export const lightMace = {
     equipped: true,
     skills: ['fencing', 'combatinsight'],
 };
-export const staff = {
+exports.staff = {
     type: 'weapon',
     kind: 'melee',
     slot: 'hand',
@@ -46,7 +49,7 @@ export const staff = {
     equipped: true,
     skills: ['fencing', 'combatinsight'],
 };
-export const antimagicBlast = {
+exports.antimagicBlast = {
     type: 'weapon',
     kind: 'ranged',
     slot: 'hand',
@@ -58,7 +61,7 @@ export const antimagicBlast = {
     equipped: true,
     skills: ['sniper', 'quickdraw'],
 };
-export const sonicBlast = {
+exports.sonicBlast = {
     type: 'weapon',
     kind: 'ranged',
     slot: 'hand',
@@ -70,7 +73,7 @@ export const sonicBlast = {
     equipped: true,
     skills: ['sniper', 'quickdraw'],
 };
-export const magicRapier = {
+exports.magicRapier = {
     type: 'weapon',
     kind: 'melee',
     slot: 'hand',
@@ -82,7 +85,7 @@ export const magicRapier = {
     equipped: true,
     skills: ['fencing', 'combatinsight'],
 };
-export const crossbow = {
+exports.crossbow = {
     type: 'weapon',
     kind: 'ranged',
     slot: 'hand',
@@ -94,7 +97,7 @@ export const crossbow = {
     equipped: true,
     skills: ['sniper', 'quickdraw'],
 };
-export const longbow = {
+exports.longbow = {
     type: 'weapon',
     kind: 'ranged',
     slot: 'hand',
@@ -106,7 +109,7 @@ export const longbow = {
     equipped: true,
     skills: ['hurling', 'righteousfury'],
 };
-export const feet = {
+exports.feet = {
     type: 'weapon',
     kind: 'melee',
     slot: 'body',
@@ -118,7 +121,7 @@ export const feet = {
     size: 1,
     skills: ['unarmedfighting'],
 };
-export const stoneCloak = {
+exports.stoneCloak = {
     type: 'armor',
     slot: 'body',
     size: 1,
@@ -126,7 +129,7 @@ export const stoneCloak = {
     equipped: true,
     name: 'Stone Cloak',
 };
-export const shield = {
+exports.shield = {
     type: 'armor',
     slot: 'body',
     size: 1,
@@ -134,7 +137,7 @@ export const shield = {
     equipped: true,
     name: 'Shield',
 };
-export const nonproficiencyPenalty = {
+exports.nonproficiencyPenalty = {
     type: 'other',
     name: 'Shield Nonproficiency Penalty',
     equipped: true,
@@ -142,7 +145,7 @@ export const nonproficiencyPenalty = {
     slot: 'body',
     effect: { assets: [{ category: 'attack', value: -1 }] },
 };
-export const rapidStrike = {
+exports.rapidStrike = {
     type: 'other',
     name: 'Rapid Strike',
     equipped: true,

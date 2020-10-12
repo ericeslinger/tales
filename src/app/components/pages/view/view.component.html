@@ -1,1 +1,19 @@
-<p>view works!</p>
+<div class="toc">
+  <div *ngFor="let contentsItem of contents | async" class="toc-item"
+      [class.toc-active]="(activeHeaders | async)[contentsItem.index]"
+      (click)="scrollTo(contentsItem.index, $event)">
+    {{ contentsItem.text }}
+  </div>
+</div>
+<div #content markdown class="longform" [data]="(page | async)?.content">
+</div>
+<div class="license">
+  <div class="copyright">
+    &copy; 2020 Eric Eslinger. Some rights reserved.
+  </div>
+  <div>
+    <a href="https://creativecommons.org/licenses/by-nc/4.0/legalcode">
+      <img alt="Creative Commons License" src="assets/cc-by-nc.png">
+    </a>
+  </div>
+</div>

@@ -23,6 +23,10 @@
   flex-direction: column;
 }
 
+.skillLevel {
+  text-transform: capitalize;
+}
+
 .attributes {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -50,6 +54,7 @@
   flex: 1 0 auto;
   align-items: center;
   justify-content: flex-end;
+  margin-right: 4px;
 }
 
 .attributeName {
@@ -76,6 +81,7 @@
   flex-direction: row;
   flex: 1 0 auto;
   justify-content: space-between;
+  align-items: center;
 }
 
 .rollers {

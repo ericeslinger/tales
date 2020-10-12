@@ -1,0 +1,53 @@
+@use "sass:map";
+@import '../../../vars.scss';
+
+.dialogContent {
+  display: flex;
+  flex-direction: column;
+  min-width: 40vw;
+}
+
+.dialogBody {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: 25vh;
+  flex: 0 0 auto;
+  align-items: flex-start;
+}
+
+.imageUpload {
+  display: flex;
+  flex: 0 0 100px;
+  min-height: 100px;
+}
+
+.scrim {
+  background-color: rgba(map.get($mat-accent, 'main'), 0.3);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  flex: 1 0 auto;
+  display: none;
+}
+
+.imagePreview {
+  object-fit: contain;
+  height: 100px;
+  width: 100px;
+}
+
+.previewContainer {
+  position: relative;
+  &:hover > .scrim {
+    display: flex;
+  }
+}
+
+.buttonRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

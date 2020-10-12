@@ -1,0 +1,9 @@
+<div class="msg">
+  <div class="from">
+    <div class="avatar"><img [src]="msg.sender.avatar"></div>
+    <div class="name">{{msg.sender.name}}</div>
+  </div>
+  <div class="textContent" *ngIf="msg.type === 'text'" markdown
+      [data]="msg.text">
+  </div>
+</div>

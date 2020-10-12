@@ -1,4 +1,4 @@
-import { campaign, characters } from './fantasyFights.js';
+import { campaign, characters } from './fantasyFights';
 
 import admin from 'firebase-admin';
 
@@ -15,8 +15,8 @@ import admin from 'firebase-admin';
 
   const app = admin.initializeApp({
     credential: admin.credential.applicationDefault(),
-    databaseURL: 'https://tales-280319.firebaseio.com',
-    projectId: 'tales-280319',
+    databaseURL: 'https://framesystem-rpg.firebaseio.com',
+    projectId: 'framesystem-rpg',
   });
 
   const ffc = await app

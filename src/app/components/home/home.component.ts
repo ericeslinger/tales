@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Campaign } from 'types/campaign';
+import { UserService } from '../user/user.service';
 
 export interface Presentation {
   userId: string;
@@ -15,15 +16,11 @@ export interface Presentation {
 export class HomeComponent implements OnInit {
   @Input() presentation: Presentation;
 
-  constructor() {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {}
 
-  linkToCampaign(campaign: Campaign) {
-    return [
-      'campaigns',
-      campaign.campaignId,
-      campaign.acl[this.presentation.userId],
-    ];
+  logout() {
+    this.userService.logout();
   }
 }

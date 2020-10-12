@@ -1,0 +1,42 @@
+.toc {
+  @media (max-width: 1050px) {
+    display: none;
+  }
+  max-width: 200px;
+  padding: 0 8px;
+  position: fixed;
+  left: 0;
+  top: 64px;
+
+  .toc-active {
+    font-weight: 700;
+  }
+
+  .toc-head {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    background: #fff;
+    margin-right: 12px;
+    justify-content: space-between;
+  }
+}
+
+.license {
+  margin: 8px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (min-width: 1050px) {
+    position: fixed;
+    right: 0;
+    bottom: 2px;
+    max-width: 200px;
+    margin: 0 8px;
+  }
+}
+
+.longform {
+  margin: 0 auto;
+}

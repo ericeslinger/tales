@@ -1,7 +1,8 @@
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { CommonModule } from '@angular/common';
+import { FIREBASE_OPTIONS } from '@angular/fire';
 import { NgModule } from '@angular/core';
 import { SETTINGS } from '@angular/fire/firestore';
 import { environment } from '../../../environments/environment';
@@ -18,19 +19,33 @@ import { environment } from '../../../environments/environment';
             ssl: false,
           },
     },
+    {
+      provide: FIREBASE_OPTIONS,
+      useValue: environment.production
+        ? undefined
+        : {
+            databaseURL: 'http://localhost:9000?ns=framesystem-rpg',
+            apiKey: 'AIzaSyDUOWopxmEK8n3r4wSOXzKsZJg_78D_OF8',
+            authDomain: 'framesystem-rpg.firebaseapp.com',
+            projectId: 'framesystem-rpg',
+            storageBucket: 'framesystem-rpg.appspot.com',
+            messagingSenderId: '414765217858',
+            appId: '1:414765217858:web:0575368df99009430295db',
+          },
+    },
   ],
   imports: [
     AngularFireAuthModule,
     AngularFireModule.initializeApp({
-      apiKey: 'AIzaSyCPMpyIIJ5kEz6baDWs8FlGN9zZ-DhttEU',
-      authDomain: 'tales-280319.firebaseapp.com',
-      databaseURL: 'https://tales-280319.firebaseio.com',
-      projectId: 'tales-280319',
-      storageBucket: 'tales-280319.appspot.com',
-      messagingSenderId: '566075741185',
-      appId: '1:566075741185:web:5ab6e5b64399c8165edc00',
-      measurementId: 'G-Q6Z05NHF7L',
+      apiKey: 'AIzaSyDUOWopxmEK8n3r4wSOXzKsZJg_78D_OF8',
+      authDomain: 'framesystem-rpg.firebaseapp.com',
+      databaseURL: 'https://framesystem-rpg.firebaseio.com',
+      projectId: 'framesystem-rpg',
+      storageBucket: 'framesystem-rpg.appspot.com',
+      messagingSenderId: '414765217858',
+      appId: '1:414765217858:web:0575368df99009430295db',
     }),
+    AngularFireStorageModule,
     CommonModule,
   ],
 })

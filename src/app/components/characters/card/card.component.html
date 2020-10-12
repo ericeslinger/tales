@@ -1,79 +1,73 @@
-<div class="playerCard" *ngIf="character | async as characterScalar">
+<div class="playerCard">
   <div class="nameRow">
     <div class="name">
-      {{ characterScalar.name }}
+      {{ (character | async)?.name }}
     </div>
-    <div class="lock">
-      <button mat-icon-button (click)="toggleLock($event)">
-        <mat-icon inline="true" class="lockIcon">
-          {{ (locked | async) ? 'lock' : 'lock_open'}}
-        </mat-icon>
-      </button>
-    </div>
+    <button mat-icon-button [matMenuTriggerFor]="actionMenu"
+        *ngIf="(relationship | async) === 'gm'">
+      <mat-icon>more_vert</mat-icon>
+    </button>
   </div>
   <div class="characterBody">
-    <div class="attributes" *ngIf="characterScalar.subtype !== 'nonplayer'">
-      <div *ngFor="let attribute of characterScalar.attributes | keyvalue"
+    <div class="attributes" *ngIf="skilled | async">
+      <div *ngFor="let attribute of attributes | async; trackBy: ('name' | trackByProperty)"
           class="attribute">
         <div class="attributeName">
-          {{attribute.value.name}}:
+          {{attribute.name}}:
         </div>
-        <div *ngIf="attribute.value.wound">
+        <div *ngIf="attribute.wound">
           <mat-icon color="warn">sentiment_very_dissatisfied</mat-icon>
         </div>
-        <div class="attributeContent" *ngIf="!attribute.value.wound">
-          <adjust-character *ngIf="!(locked|async)" min="0"
-              [max]="attribute.value.pool" [increment]="-1"
-              [character]="character"
-              [path]="'attributes.'+attribute.key+'.current'">
-          </adjust-character>
-          <div class="pool">
-            {{ attribute.value.current }} / {{attribute.value.pool}}
+        <div class="attributeContent" *ngIf="!attribute.wound">
+          <framesystem-adjust-character [max]="attribute.pool"
+              [initial]="attribute.current"
+              [path]="'attributes.'+attribute.name+'.current'"
+              [character]="character | async | extractId" *ngIf="!locked">
+          </framesystem-adjust-character>
+          <div *ngIf="locked">
+            {{ attribute.current }} / {{ attribute.pool }}
+            {{ attribute.edge > 0 ? '+'+attribute.edge : ''}}
           </div>
-          <adjust-character *ngIf="!(locked|async)" min="0"
-              [max]="attribute.value.pool" [increment]="1"
-              [character]="character"
-              [path]="'attributes.'+attribute.key+'.current'">
-          </adjust-character>
         </div>
       </div>
-      <div class="attribute" *ngIf="characterScalar.initiative >= 0">
+      <div class="attribute">
         <div class="attributeName">Initiative:</div>
         <div class="attributeContent">
-          <adjust-character *ngIf="!(locked|async)" min="0" [max]="1000"
-              [increment]="0" [character]="character" [path]="'initiative'">
-          </adjust-character>
-          <div class="pool">{{characterScalar.initiative}}</div>
-          <adjust-character *ngIf="!(locked|async)" min="0" [max]="1000"
-              [increment]="1" [character]="character" [path]="'initiative'">
-          </adjust-character>
+          <framesystem-adjust-character *ngIf="!locked"
+              [initial]="(character | async)?.initiative" path="initiative"
+              [character]="character | async | extractId">
+          </framesystem-adjust-character>
+          <div *ngIf="locked">
+            {{ (character | async)?.initiative }}
+          </div>
         </div>
       </div>
     </div>
-    <mat-expansion-panel *ngIf="characterScalar.subtype !== 'nonplayer'">
+    <mat-expansion-panel *ngIf="(character | async)?.subtype !== 'nonplayer'">
       <mat-expansion-panel-header>
         <mat-panel-title>Skills</mat-panel-title>
       </mat-expansion-panel-header>
       <div class="skills">
-        <div *ngFor="let category of skillsByCategory | async | keyvalue">
-          <div class="categoryTitle">{{category.key}}</div>
-          <div *ngFor="let skill of category.value" class="skill">
-            <div class="skillInfo">
-              <div>{{skill.name}}</div>
-              <div style="text-transform: capitalize;">{{skill.level}}</div>
-              <button mat-icon-button (click)="check($event, skill)">
-                <mat-icon>casino</mat-icon>
-              </button>
-            </div>
+        <div *ngFor="let skill of skills | async" class="skill">
+          <div class="skillInfo">
+            <div>{{skill.name}}</div>
+            <button mat-stroked-button class="skillLevel" color="primary"
+                *ngIf="gmOrPlayer | async; else skillLevelOnly"
+                (click)="check($event, skill)">
+              {{skill.level}}
+            </button>
+            <ng-template #skillLevelOnly>
+              <div class="skillLevel">{{skill.level}}</div>
+            </ng-template>
           </div>
         </div>
       </div>
     </mat-expansion-panel>
-    <mat-expansion-panel *ngIf="characterScalar.equipment.length > 0">
+    <mat-expansion-panel *ngIf="(character | async)?.equipment.length > 0">
       <mat-expansion-panel-header>
         <mat-panel-title>Equipment</mat-panel-title>
       </mat-expansion-panel-header>
-      <div *ngFor="let item of characterScalar.equipment" class="item">
+      <div *ngFor="let item of (character | async)?.equipment" class="item">
         <div>
           {{item.name}}
         </div>
@@ -82,3 +76,14 @@
     </mat-expansion-panel>
   </div>
 </div>
+
+<mat-menu #actionMenu>
+  <button mat-menu-item (click)="toggleLock()">
+    <mat-icon>{{ locked ? 'lock_open' : 'lock' }}</mat-icon>
+    <span>{{locked ? 'Unlock' : 'Lock'}} Character</span>
+  </button>
+  <button mat-menu-item (click)="triggerDefend($event)">
+    <mat-icon>security</mat-icon>
+    <span>Trigger Defense</span>
+  </button>
+</mat-menu>

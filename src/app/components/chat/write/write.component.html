@@ -1,0 +1,18 @@
+<form class="chatEditor">
+  <mat-form-field class="chatInput">
+    <textarea matInput placeholder="Message here" #msgInput cdkTextareaAutosize
+        cdkAutosizeMinRows="4" cdkAutosizeMaxRows="10"
+        (keydown.enter)="enter($event)"></textarea>
+  </mat-form-field>
+  <!-- <div class="imageInput" *ngIf="imageSlide.checked">
+    <label for="file">File:</label>
+    <input type="file" (change)="upload($event)"
+        accept=".png,.jpg,.jpeg,.gif" />
+  </div> -->
+  <button mat-icon-button (click)="send($event)">
+    <mat-icon>send</mat-icon>
+  </button>
+  <!-- <mat-slide-toggle class="example-margin" #imageSlide>
+    <mat-icon>image</mat-icon>
+  </mat-slide-toggle> -->
+</form>

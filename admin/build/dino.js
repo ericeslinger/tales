@@ -1,5 +1,8 @@
-import { attr, skillBlock } from './util.js';
-import { commonSkills, companionBaseSkills } from './skills.js';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.characters = exports.companions = exports.campaign = void 0;
+const util_1 = require("./util");
+const skills_1 = require("./skills");
 const localSkills = [
     {
         skillId: 'advancedsecurity',
@@ -58,12 +61,12 @@ const localSkills = [
         attributes: ['conviction', 'focus'],
     },
 ];
-export const campaign = {
+exports.campaign = {
     type: 'campaign',
     name: 'Tales of Dinosaurs and Stuff',
     description: 'also Time Travel and Alien Spaceships',
     acl: {},
-    skills: commonSkills.concat(localSkills),
+    skills: skills_1.commonSkills.concat(localSkills),
 };
 const players = [
     {
@@ -73,13 +76,13 @@ const players = [
         type: 'character',
         subtype: 'player',
         attributes: {
-            health: attr(10, 0, 'health'),
-            might: attr(5, 0, 'might'),
-            speed: attr(5, 0, 'speed'),
-            focus: attr(10, 1, 'focus'),
-            conviction: attr(7, 0, 'conviction'),
+            health: util_1.attr(10, 0, 'health'),
+            might: util_1.attr(5, 0, 'might'),
+            speed: util_1.attr(5, 0, 'speed'),
+            focus: util_1.attr(10, 1, 'focus'),
+            conviction: util_1.attr(7, 0, 'conviction'),
         },
-        skills: skillBlock(campaign.skills, {
+        skills: util_1.skillBlock(exports.campaign.skills, {
             inept: [],
             proficient: [
                 'dryscienceknowledge',
@@ -117,13 +120,13 @@ const players = [
         type: 'character',
         subtype: 'player',
         attributes: {
-            health: attr(10, 0, 'health'),
-            might: attr(5, 0, 'might'),
-            speed: attr(5, 0, 'speed'),
-            focus: attr(7, 0, 'focus'),
-            conviction: attr(10, 2, 'conviction'),
+            health: util_1.attr(10, 0, 'health'),
+            might: util_1.attr(5, 0, 'might'),
+            speed: util_1.attr(5, 0, 'speed'),
+            focus: util_1.attr(7, 0, 'focus'),
+            conviction: util_1.attr(10, 2, 'conviction'),
         },
-        skills: skillBlock(campaign.skills, {
+        skills: util_1.skillBlock(exports.campaign.skills, {
             inept: [
                 'dryscienceknowledge',
                 'drysciencetinker',
@@ -156,13 +159,13 @@ const players = [
         type: 'character',
         subtype: 'player',
         attributes: {
-            health: attr(10, 0, 'health'),
-            might: attr(5, 0, 'might'),
-            speed: attr(7, 0, 'speed'),
-            focus: attr(10, 1, 'focus'),
-            conviction: attr(5, 0, 'conviction'),
+            health: util_1.attr(10, 0, 'health'),
+            might: util_1.attr(5, 0, 'might'),
+            speed: util_1.attr(7, 0, 'speed'),
+            focus: util_1.attr(10, 1, 'focus'),
+            conviction: util_1.attr(5, 0, 'conviction'),
         },
-        skills: skillBlock(campaign.skills, {
+        skills: util_1.skillBlock(exports.campaign.skills, {
             inept: [
                 'dryscienceknowledge',
                 'drysciencetinker',
@@ -195,13 +198,13 @@ const players = [
         type: 'character',
         subtype: 'player',
         attributes: {
-            health: attr(10, 0, 'health'),
-            might: attr(10, 2, 'might'),
-            speed: attr(6, 1, 'speed'),
-            focus: attr(5, 0, 'focus'),
-            conviction: attr(7, 0, 'conviction'),
+            health: util_1.attr(10, 0, 'health'),
+            might: util_1.attr(10, 2, 'might'),
+            speed: util_1.attr(6, 1, 'speed'),
+            focus: util_1.attr(5, 0, 'focus'),
+            conviction: util_1.attr(7, 0, 'conviction'),
         },
-        skills: skillBlock(campaign.skills, {
+        skills: util_1.skillBlock(exports.campaign.skills, {
             inept: [
                 'dryscienceknowledge',
                 'drysciencetinker',
@@ -234,13 +237,13 @@ const players = [
         type: 'character',
         subtype: 'player',
         attributes: {
-            health: attr(10, 0, 'health'),
-            might: attr(5, 0, 'might'),
-            speed: attr(10, 1, 'speed'),
-            focus: attr(7, 1, 'focus'),
-            conviction: attr(5, 0, 'conviction'),
+            health: util_1.attr(10, 0, 'health'),
+            might: util_1.attr(5, 0, 'might'),
+            speed: util_1.attr(10, 1, 'speed'),
+            focus: util_1.attr(7, 1, 'focus'),
+            conviction: util_1.attr(5, 0, 'conviction'),
         },
-        skills: skillBlock(campaign.skills, {
+        skills: util_1.skillBlock(exports.campaign.skills, {
             inept: [
                 'dryscienceknowledge',
                 'drysciencetinker',
@@ -267,7 +270,7 @@ const players = [
         initiative: 0,
     },
 ];
-export const companions = [
+exports.companions = [
     {
         name: 'Sparks',
         description: 'Ornithomimid',
@@ -278,10 +281,10 @@ export const companions = [
         defend: 2,
         armor: 0,
         attributes: {
-            health: attr(12, 0, 'health'),
-            loyalty: attr(8, 0, 'loyalty'),
+            health: util_1.attr(12, 0, 'health'),
+            loyalty: util_1.attr(8, 0, 'loyalty'),
         },
-        skills: companionBaseSkills(),
+        skills: skills_1.companionBaseSkills(),
         initiative: 0,
         equipment: [],
         baseInitiative: 4,
@@ -296,10 +299,10 @@ export const companions = [
         attack: 2,
         defend: 2,
         armor: 6,
-        skills: companionBaseSkills(),
+        skills: skills_1.companionBaseSkills(),
         attributes: {
-            health: attr(12, 0, 'health'),
-            loyalty: attr(6, 0, 'loyalty'),
+            health: util_1.attr(12, 0, 'health'),
+            loyalty: util_1.attr(6, 0, 'loyalty'),
         },
         initiative: 0,
         equipment: [],
@@ -321,10 +324,10 @@ export const companions = [
         defend: 6,
         armor: 10,
         attributes: {
-            health: attr(14, 0, 'health'),
-            loyalty: attr(6, 0, 'loyalty'),
+            health: util_1.attr(14, 0, 'health'),
+            loyalty: util_1.attr(6, 0, 'loyalty'),
         },
-        skills: companionBaseSkills(),
+        skills: skills_1.companionBaseSkills(),
         initiative: 0,
         equipment: [],
         baseInitiative: 4,
@@ -340,10 +343,10 @@ export const companions = [
         defend: 3,
         armor: 0,
         attributes: {
-            health: attr(8, 0, 'health'),
-            loyalty: attr(4, 0, 'loyalty'),
+            health: util_1.attr(8, 0, 'health'),
+            loyalty: util_1.attr(4, 0, 'loyalty'),
         },
-        skills: companionBaseSkills(),
+        skills: skills_1.companionBaseSkills(),
         initiative: 0,
         equipment: [],
         baseInitiative: 4,
@@ -355,13 +358,13 @@ export const companions = [
         acl: {},
         type: 'character',
         subtype: 'companion',
-        skills: companionBaseSkills(),
+        skills: skills_1.companionBaseSkills(),
         attack: 4,
         defend: 1,
         armor: 2,
         attributes: {
-            health: attr(15, 0, 'health'),
-            loyalty: attr(5, 0, 'loyalty'),
+            health: util_1.attr(15, 0, 'health'),
+            loyalty: util_1.attr(5, 0, 'loyalty'),
         },
         initiative: 0,
         equipment: [],
@@ -369,4 +372,4 @@ export const companions = [
         abilities: [],
     },
 ];
-export const characters = players.concat(companions);
+exports.characters = players.concat(exports.companions);

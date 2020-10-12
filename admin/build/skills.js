@@ -1,4 +1,7 @@
-export const commonSkills = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.companionBaseSkills = exports.commonSkills = void 0;
+exports.commonSkills = [
     {
         skillId: 'commandanimal',
         type: 'noncombat',
@@ -240,7 +243,7 @@ export const commonSkills = [
         attributes: ['conviction', 'focus'],
     },
 ];
-export function companionBaseSkills() {
+function companionBaseSkills() {
     return [
         {
             skillId: 'attack',
@@ -271,3 +274,4 @@ export function companionBaseSkills() {
         },
     ];
 }
+exports.companionBaseSkills = companionBaseSkills;

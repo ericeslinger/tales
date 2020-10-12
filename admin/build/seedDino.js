@@ -1,5 +1,10 @@
-import { campaign, characters } from './fantasyFights.js';
-import admin from 'firebase-admin';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const fantasyFights_1 = require("./fantasyFights");
+const firebase_admin_1 = __importDefault(require("firebase-admin"));
 (async () => {
     const flagArgs = {};
     const args = process.argv.slice(2);
@@ -9,17 +14,17 @@ import admin from 'firebase-admin';
     if (!flagArgs.gm) {
         throw new TypeError('required argument --gm uid');
     }
-    const app = admin.initializeApp({
-        credential: admin.credential.applicationDefault(),
-        databaseURL: 'https://tales-280319.firebaseio.com',
-        projectId: 'tales-280319',
+    const app = firebase_admin_1.default.initializeApp({
+        credential: firebase_admin_1.default.credential.applicationDefault(),
+        databaseURL: 'https://framesystem-rpg.firebaseio.com',
+        projectId: 'framesystem-rpg',
     });
     const ffc = await app
         .firestore()
         .collection(`/campaigns`)
-        .add({ ...campaign, acl: { [flagArgs.gm]: 'admin' } });
+        .add({ ...fantasyFights_1.campaign, acl: { [flagArgs.gm]: 'admin' } });
     await Promise.all([
-        Promise.all(characters
+        Promise.all(fantasyFights_1.characters
             .map((c) => {
             if (flagArgs.player) {
                 return { ...c, acl: { [flagArgs.player]: 'admin' } };

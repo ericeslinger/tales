@@ -1,24 +1,21 @@
+import { attr, skillBlock } from './util';
 import {
-  antimagicBlast,
   crossbow,
   dagger,
   feet,
   lightMace,
   longbow,
+  magicCrossbow,
   magicRapier,
-  nonproficiencyPenalty,
-  rapidStrike,
   shield,
-  sonicBlast,
   staff,
   stoneCloak,
-} from './equipment.js';
-import { attr, skillBlock } from './util.js';
+} from './equipment';
 
 import { Campaign } from '../../types/campaign';
 import { PlayerCharacter } from '../../types/character';
 import { Skill } from '../../types/skill';
-import { commonSkills } from './skills.js';
+import { commonSkills } from './skills';
 
 const localSkills: Skill[] = [
   {
@@ -103,12 +100,11 @@ export const campaign: Omit<Campaign, 'campaignId'> = {
   skills: commonSkills.concat(localSkills),
 };
 
-export const characters: Omit<
-  PlayerCharacter,
-  'characterId' | 'campaignId'
->[] = [
+export const characters: PlayerCharacter[] = [
   {
     name: 'Stu Roid',
+    campaignId: 'ou',
+    characterId: 'stu',
     acl: {},
     description: '',
     type: 'character',
@@ -136,18 +132,14 @@ export const characters: Omit<
     }),
     experience: 1,
     initiative: 0,
-    equipment: [
-      stoneCloak,
-      crossbow,
-      dagger,
-      shield,
-      nonproficiencyPenalty,
-      staff,
-      antimagicBlast,
-    ],
+    equipped: [stoneCloak, crossbow, dagger, shield, staff],
+    carried: [],
+    abilities: [],
   },
   {
     name: 'Kewulf Trannyth',
+    campaignId: 'ou',
+    characterId: 'kewulf',
     acl: {},
     description: '',
     type: 'character',
@@ -172,10 +164,14 @@ export const characters: Omit<
     }),
     experience: 5,
     initiative: 0,
-    equipment: [longbow, stoneCloak, sonicBlast, dagger],
+    equipped: [longbow, stoneCloak, dagger],
+    carried: [],
+    abilities: [],
   },
   {
     name: 'Malven Stonecutter',
+    campaignId: 'ou',
+    characterId: 'malven',
     acl: {},
     description: '',
     type: 'character',
@@ -207,10 +203,14 @@ export const characters: Omit<
     }),
     experience: 5,
     initiative: 0,
-    equipment: [lightMace, stoneCloak, dagger],
+    equipped: [lightMace, stoneCloak, dagger],
+    carried: [],
+    abilities: [],
   },
   {
     name: 'Jordiz Shirodz',
+    campaignId: 'ou',
+    characterId: 'jordiz',
     acl: {},
     description: '',
     type: 'character',
@@ -246,10 +246,14 @@ export const characters: Omit<
     ]),
     experience: 5,
     initiative: 0,
-    equipment: [feet, stoneCloak],
+    equipped: [stoneCloak],
+    carried: [],
+    abilities: [feet],
   },
   {
     name: 'Cantaloupe "Loupe" Pantaloons',
+    campaignId: 'ou',
+    characterId: 'loupe',
     acl: {},
     description: '',
     type: 'character',
@@ -269,6 +273,8 @@ export const characters: Omit<
     }),
     experience: 5,
     initiative: 0,
-    equipment: [magicRapier, stoneCloak, rapidStrike, crossbow],
+    equipped: [magicRapier, stoneCloak, magicCrossbow],
+    carried: [],
+    abilities: [],
   },
 ];

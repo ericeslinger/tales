@@ -1,0 +1,98 @@
+.avatarBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.editOverlay {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.editOverlayIcon {
+  color: #fff;
+}
+
+.avatar {
+  display: flex;
+  flex: 0 0 auto;
+  margin: 12px;
+  position: relative;
+  &:hover .editOverlay {
+    display: flex;
+  }
+}
+
+.img {
+  object-fit: contain;
+  width: 200px;
+  height: 200px;
+}
+
+.editButton {
+  display: none;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  justify-content: flex-start;
+}
+
+.infoRow {
+  display: flex;
+  flex-direction: row;
+  flex: 1 0 auto;
+  margin: 12px;
+  align-items: center;
+
+  &:hover .editButton {
+    display: block;
+  }
+}
+
+.rollerColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  margin: 12px;
+}
+
+.rollerGroup {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+}
+
+.name {
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.rollerRadio {
+  margin-left: 12px;
+}
+
+.attributes {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.empty {
+  background-color: #cccccc;
+  height: 128px;
+  width: 128px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

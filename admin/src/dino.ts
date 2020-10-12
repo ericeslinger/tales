@@ -1,6 +1,6 @@
 import { Character, Companion, PlayerCharacter } from '../../types/character';
-import { attr, skillBlock } from './util.js';
-import { commonSkills, companionBaseSkills } from './skills.js';
+import { attr, skillBlock } from './util';
+import { commonSkills, companionBaseSkills } from './skills';
 
 import { Campaign } from '../../types/campaign';
 import { Skill } from '../../types/skill';

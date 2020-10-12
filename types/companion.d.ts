@@ -13,5 +13,4 @@ export interface Companion extends CharacterBase {
   };
   armor: number;
   skills?: CharacterSkill[];
-  abilities?: string[];
 }

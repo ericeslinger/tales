@@ -1,0 +1,32 @@
+<div class="dialogContent">
+  <h1 mat-dialog-title>Trigger {{request.type}}</h1>
+  <div class="dialogBody" mat-dialog-content [formGroup]="req">
+    <mat-form-field appearance="outline" *ngIf="has.target">
+      <mat-label>Target</mat-label>
+      <input matInput formControlName="target" type="text" inputmode="numeric"
+          autocomplete="disabled" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" *ngIf="has.damage">
+      <mat-label>Damage</mat-label>
+      <input matInput formControlName="damage" type="text" inputmode="numeric"
+          autocomplete="disabled" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" *ngIf="has.assets">
+      <mat-label>Modifier: Assets / Hindrances</mat-label>
+      <input matInput formControlName="assets" type="text" inputmode="numeric"
+          autocomplete="disabled" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" *ngIf="has.edge">
+      <mat-label>Modifier: Edge</mat-label>
+      <input matInput formControlName="edge" type="text" inputmode="numeric"
+          autocomplete="disabled" />
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="buttonRow">
+    <button mat-raised-button [matDialogClose]="false">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="req.invalid"
+        cdkFocusInitial (click)="ok()">
+      Ok
+    </button>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+@use "sass:map";
+@import '../../../vars.scss';
+
+.spacer {
+  flex: 1 0 auto;
+}
+
+.topline {
+  display: flex;
+  flex-direction: row;
+  flex: 1 0 auto;
+  align-items: center;
+  height: 64px;
+  padding: 0 8px 0 0;
+  background-color: map.get($mat-primary, 'lighter');
+  color: $light-text;
+}
+
+.title {
+  margin-bottom: 0;
+  white-space: nowrap;
+  max-width: 60%;
+  overflow-x: hidden;
+  margin-left: 12px;
+  text-overflow: ellipsis;
+}
+
+.campaignMenu {
+  width: 1000px;
+}

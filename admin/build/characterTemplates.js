@@ -1,4 +1,7 @@
-export const playerTemplate = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.nonplayerTemplate = exports.companionTemplate = exports.playerTemplate = void 0;
+exports.playerTemplate = {
     name: '',
     acl: {},
     equipment: [],
@@ -46,7 +49,7 @@ export const playerTemplate = {
         },
     },
 };
-export const companionTemplate = {
+exports.companionTemplate = {
     name: '',
     description: '',
     equipment: [],
@@ -105,7 +108,7 @@ export const companionTemplate = {
     ],
     abilities: [],
 };
-export const nonplayerTemplate = {
+exports.nonplayerTemplate = {
     name: '',
     description: '',
     type: 'character',

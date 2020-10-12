@@ -4,7 +4,7 @@ import { map, publishReplay, refCount } from 'rxjs/operators';
 
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Campaign } from 'types/campaign';
-import { CampaignService } from 'src/app/data/campaign.service';
+import { CampaignService } from 'src/app/components/campaigns/campaign.service';
 
 @Component({
   selector: 'tales-home-route',

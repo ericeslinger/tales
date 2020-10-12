@@ -7,6 +7,7 @@ import { MaterialModule } from '../../core/material/material.module';
 import { NgModule } from '@angular/core';
 import { PipesModule } from 'src/app/core/pipes/pipes.module';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [CardComponent, CreateComponent],
@@ -16,6 +17,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     MaterialModule,
     PipesModule,
+    SharedModule,
     ActionsModule,
   ],
   exports: [CardComponent, CreateComponent],

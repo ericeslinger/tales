@@ -1,37 +1,48 @@
-import { Component, Input } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core';
+import { debounceTime, filter, map, takeUntil } from 'rxjs/operators';
 
-import { Character } from 'types/character';
-import { CharacterService } from '../../data/character.service';
+import { BehaviorSubject } from 'rxjs';
+import { CharacterId } from 'types/idtypes';
+import { CharacterService } from '../../components/characters/character.service';
+import { SpinnerComponent } from 'src/app/shared/spinner.component';
 
 @Component({
-  selector: 'adjust-character',
+  selector: 'framesystem-adjust-character',
   templateUrl: './adjust.component.html',
   styleUrls: ['./adjust.component.scss'],
 })
-export class AdjustComponent {
-  @Input() character: Character;
-  @Input() path: string;
-  @Input() max: number;
-  @Input() min: number = 0;
-  @Input() increment: number;
+export class AdjustComponent implements AfterViewInit, OnDestroy {
+  @Input('path') path: string;
+  @Input('max') max: number;
+  @Input('initial') initial: number;
+  @Input('character') character: CharacterId;
+  @ViewChild('spinner') spinner: SpinnerComponent;
+
+  destroying_ = new BehaviorSubject<boolean>(false);
+  destroying = this.destroying_.asObservable().pipe(filter((v) => v));
+
   color = 'accent';
 
   constructor(private characterService: CharacterService) {}
+  ngOnDestroy(): void {}
 
-  fire() {
-    this.characterService.update(this.character, {
-      [this.path]:
-        this.increment === 0
-          ? 0
-          : Math.min(Math.max(this.increment + this.value, this.min), this.max),
-    });
+  ngAfterViewInit() {
+    this.spinner.current
+      .pipe(
+        debounceTime(500),
+        filter((v) => v !== this.initial),
+        map((v) => ({ [this.path]: v })),
+        takeUntil(this.destroying)
+      )
+      .subscribe((v) => {
+        console.log(v);
+        this.characterService.update(this.character, v);
+      });
   }
-
-  get value() {
-    return pathGet(this.path.split('.'), this.character);
-  }
-}
-
-function pathGet(path: string[], item: any) {
-  return path.reduce((acc, curr) => acc[curr], item);
 }

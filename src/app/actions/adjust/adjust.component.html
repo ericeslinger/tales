@@ -1,6 +1,2 @@
-<button mat-icon-button (click)="fire()" [color]="color"
-    (mouseover)="color='primary'" (mouseout)="color='accent'">
-  <mat-icon *ngIf="increment > 0">add_circle_outline</mat-icon>
-  <mat-icon *ngIf="increment < 0">remove_circle_outline</mat-icon>
-  <mat-icon *ngIf="increment === 0">clear</mat-icon>
-</button>
+<framesystem-spinner [min]="0" [max]="max" [initial]="initial" #spinner>
+</framesystem-spinner>

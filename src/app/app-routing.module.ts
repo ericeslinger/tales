@@ -1,26 +1,46 @@
+import {
+  AngularFireAuthGuard,
+  redirectUnauthorizedTo,
+} from '@angular/fire/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
 
-import { GmviewComponent } from './components/campaigns/gmview/gmview.component';
+import { ViewComponent as CampaignViewComponent } from './components/campaigns/view/view.component';
+import { LoginComponent } from './components/user/login.component';
 import { NgModule } from '@angular/core';
-import { PlayerviewComponent } from './components/campaigns/playerview/playerview.component';
-import { RouteComponent } from './components/home/route.component';
+import { RulesComponent } from './components/pages/static/rules.component';
+import { RouteComponent as UserViewRouteComponent } from './components/user/view/route.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 const routes: Routes = [
   {
-    path: 'campaigns/:campaignId/gm',
-    pathMatch: 'full',
-    component: GmviewComponent,
+    path: 'welcome',
+    component: WelcomeComponent,
   },
   {
-    path: 'campaigns/:campaignId/player',
-    pathMatch: 'full',
-    component: PlayerviewComponent,
+    path: 'campaigns/:campaignId',
+    component: CampaignViewComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: () => redirectUnauthorizedTo(['login']) },
   },
   {
-    path: '',
-    pathMatch: 'full',
-    component: RouteComponent,
+    path: 'users',
+    component: UserViewRouteComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: () => redirectUnauthorizedTo(['login']) },
   },
+  {
+    path: 'users/:userId',
+    component: UserViewRouteComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: () => redirectUnauthorizedTo(['login']) },
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    children: [{ path: ':after', component: LoginComponent }],
+  },
+  { path: 'rules', component: RulesComponent },
+  { path: '**', redirectTo: 'welcome' },
 ];
 
 @NgModule({

@@ -1,0 +1,7 @@
+<div [style.height]="size" [style.width]="size" class="container"
+    [style.backgroundColor]="monogramColor">
+  <img [src]="person?.avatar" *ngIf="person?.avatar" class="image">
+  <div *ngIf="!person?.avatar" class="monogram">
+    {{ monogramText }}
+  </div>
+</div>

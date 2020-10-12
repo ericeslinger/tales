@@ -1,6 +1,6 @@
-import { campaign, characters } from './fantasyFights.js';
+import * as admin from 'firebase-admin';
 
-import admin from 'firebase-admin';
+import { campaign, characters } from './fantasyFights';
 
 (async () => {
   const flagArgs: Record<string, string> = {};
@@ -15,8 +15,8 @@ import admin from 'firebase-admin';
 
   const app = admin.initializeApp({
     credential: admin.credential.applicationDefault(),
-    databaseURL: 'https://tales-280319.firebaseio.com',
-    projectId: 'tales-280319',
+    databaseURL: 'https://framesystem-rpg.firebaseio.com',
+    projectId: 'framesystem-rpg',
   });
 
   const acl = { [flagArgs.gm]: 'gm' };
@@ -28,6 +28,13 @@ import admin from 'firebase-admin';
     .firestore()
     .collection(`/campaigns`)
     .add({ ...campaign, acl });
+
+  await app
+    .firestore()
+    .doc('/pages/rules')
+    .set({
+      authors: [flagArgs.gm],
+    });
 
   await Promise.all([
     Promise.all(

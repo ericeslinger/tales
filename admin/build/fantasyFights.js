@@ -1,6 +1,9 @@
-import { antimagicBlast, crossbow, dagger, feet, lightMace, longbow, magicRapier, nonproficiencyPenalty, rapidStrike, shield, sonicBlast, staff, stoneCloak, } from './equipment.js';
-import { attr, skillBlock } from './util.js';
-import { commonSkills } from './skills.js';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.characters = exports.campaign = void 0;
+const equipment_1 = require("./equipment");
+const util_1 = require("./util");
+const skills_1 = require("./skills");
 const localSkills = [
     {
         skillId: 'arcaneknowledge',
@@ -75,14 +78,14 @@ const localSkills = [
         attributes: ['conviction', 'focus'],
     },
 ];
-export const campaign = {
+exports.campaign = {
     type: 'campaign',
     name: 'Tales of Fantasy and Fighting',
     description: 'also Underground Caverns and Chaos',
     acl: {},
-    skills: commonSkills.concat(localSkills),
+    skills: skills_1.commonSkills.concat(localSkills),
 };
-export const characters = [
+exports.characters = [
     {
         name: 'Stu Roid',
         acl: {},
@@ -90,13 +93,13 @@ export const characters = [
         type: 'character',
         subtype: 'player',
         attributes: {
-            health: attr(10, 0, 'health'),
-            might: attr(6, 0, 'might'),
-            speed: attr(6, 0, 'speed'),
-            focus: attr(12, 2, 'focus'),
-            conviction: attr(6, 0, 'conviction'),
+            health: util_1.attr(10, 0, 'health'),
+            might: util_1.attr(6, 0, 'might'),
+            speed: util_1.attr(6, 0, 'speed'),
+            focus: util_1.attr(12, 2, 'focus'),
+            conviction: util_1.attr(6, 0, 'conviction'),
         },
-        skills: skillBlock(campaign.skills, {
+        skills: util_1.skillBlock(exports.campaign.skills, {
             inept: ['commandanimal', 'legerdemain', 'picklocks'],
             proficient: [
                 'medicine',
@@ -113,13 +116,13 @@ export const characters = [
         experience: 1,
         initiative: 0,
         equipment: [
-            stoneCloak,
-            crossbow,
-            dagger,
-            shield,
-            nonproficiencyPenalty,
-            staff,
-            antimagicBlast,
+            equipment_1.stoneCloak,
+            equipment_1.crossbow,
+            equipment_1.dagger,
+            equipment_1.shield,
+            equipment_1.nonproficiencyPenalty,
+            equipment_1.staff,
+            equipment_1.antimagicBlast,
         ],
     },
     {
@@ -129,13 +132,13 @@ export const characters = [
         type: 'character',
         subtype: 'player',
         attributes: {
-            health: attr(10, 0, 'health'),
-            might: attr(6, 0, 'might'),
-            speed: attr(8, 0, 'speed'),
-            focus: attr(5, 0, 'focus'),
-            conviction: attr(11, 1, 'conviction'),
+            health: util_1.attr(10, 0, 'health'),
+            might: util_1.attr(6, 0, 'might'),
+            speed: util_1.attr(8, 0, 'speed'),
+            focus: util_1.attr(5, 0, 'focus'),
+            conviction: util_1.attr(11, 1, 'conviction'),
         },
-        skills: skillBlock(campaign.skills, {
+        skills: util_1.skillBlock(exports.campaign.skills, {
             inept: [
                 'arcanetinker',
                 'religiontinker',
@@ -148,7 +151,7 @@ export const characters = [
         }),
         experience: 5,
         initiative: 0,
-        equipment: [longbow, stoneCloak, sonicBlast, dagger],
+        equipment: [equipment_1.longbow, equipment_1.stoneCloak, equipment_1.sonicBlast, equipment_1.dagger],
     },
     {
         name: 'Malven Stonecutter',
@@ -157,13 +160,13 @@ export const characters = [
         type: 'character',
         subtype: 'player',
         attributes: {
-            health: attr(10, 0, 'health'),
-            might: attr(6, 0, 'might'),
-            speed: attr(9, 0, 'speed'),
-            focus: attr(9, 1, 'focus'),
-            conviction: attr(6, 0, 'conviction'),
+            health: util_1.attr(10, 0, 'health'),
+            might: util_1.attr(6, 0, 'might'),
+            speed: util_1.attr(9, 0, 'speed'),
+            focus: util_1.attr(9, 1, 'focus'),
+            conviction: util_1.attr(6, 0, 'conviction'),
         },
-        skills: skillBlock(campaign.skills, {
+        skills: util_1.skillBlock(exports.campaign.skills, {
             inept: [
                 'wildernesslore',
                 'arcaneknowledge',
@@ -183,7 +186,7 @@ export const characters = [
         }),
         experience: 5,
         initiative: 0,
-        equipment: [lightMace, stoneCloak, dagger],
+        equipment: [equipment_1.lightMace, equipment_1.stoneCloak, equipment_1.dagger],
     },
     {
         name: 'Jordiz Shirodz',
@@ -192,13 +195,13 @@ export const characters = [
         type: 'character',
         subtype: 'player',
         attributes: {
-            health: attr(10, 0, 'health'),
-            might: attr(6, 0, 'might'),
-            speed: attr(8, 1, 'speed'),
-            focus: attr(11, 1, 'focus'),
-            conviction: attr(5, 0, 'conviction'),
+            health: util_1.attr(10, 0, 'health'),
+            might: util_1.attr(6, 0, 'might'),
+            speed: util_1.attr(8, 1, 'speed'),
+            focus: util_1.attr(11, 1, 'focus'),
+            conviction: util_1.attr(5, 0, 'conviction'),
         },
-        skills: skillBlock(campaign.skills, {
+        skills: util_1.skillBlock(exports.campaign.skills, {
             inept: ['riding', 'wildernesslore', 'lie', 'picklocks'],
             proficient: [
                 'fencing',
@@ -222,7 +225,7 @@ export const characters = [
         ]),
         experience: 5,
         initiative: 0,
-        equipment: [feet, stoneCloak],
+        equipment: [equipment_1.feet, equipment_1.stoneCloak],
     },
     {
         name: 'Cantaloupe "Loupe" Pantaloons',
@@ -231,13 +234,13 @@ export const characters = [
         type: 'character',
         subtype: 'player',
         attributes: {
-            health: attr(10, 0, 'health'),
-            might: attr(5, 0, 'might'),
-            speed: attr(11, 2, 'speed'),
-            focus: attr(8, 0, 'focus'),
-            conviction: attr(6, 0, 'conviction'),
+            health: util_1.attr(10, 0, 'health'),
+            might: util_1.attr(5, 0, 'might'),
+            speed: util_1.attr(11, 2, 'speed'),
+            focus: util_1.attr(8, 0, 'focus'),
+            conviction: util_1.attr(6, 0, 'conviction'),
         },
-        skills: skillBlock(campaign.skills, {
+        skills: util_1.skillBlock(exports.campaign.skills, {
             inept: ['riding', 'medicine', 'commandanimal', 'persuade'],
             proficient: ['fencing', 'dodge', 'reflexes', 'health', 'movement'],
             trained: [],
@@ -245,6 +248,6 @@ export const characters = [
         }),
         experience: 5,
         initiative: 0,
-        equipment: [magicRapier, stoneCloak, rapidStrike, crossbow],
+        equipment: [equipment_1.magicRapier, equipment_1.stoneCloak, equipment_1.rapidStrike, equipment_1.crossbow],
     },
 ];

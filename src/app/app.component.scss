@@ -1,73 +1,21 @@
-.root {
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
+.shell {
+  position: relative;
+  height: 100vh;
+}
+
+.topline {
   position: absolute;
   top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
 }
 
-.pushRight {
-  margin-left: auto;
-}
-
-.loginIcon {
-  max-height: 24px;
-  margin-right: 4px;
-}
-
-.sidenavContent {
-  height: 100%;
-}
-
-.toolbarEnd {
-  margin-left: auto;
-}
-
-.buttonRow {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.verification {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1 0 auto;
+.content {
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: 64px;
   left: 0;
   right: 0;
-}
-
-.signup {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1 0 auto;
-  position: absolute;
-  top: 0;
   bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.loginForm {
-  display: flex;
-  flex: 0 1 auto;
-  flex-direction: column;
-  padding: 24px;
-  border-radius: 4px;
-  border: 1px solid var(--fairy-dark);
-  min-height: 30vh;
-  min-width: 40vw;
-}
-
-.manual {
-  display: flex;
-  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

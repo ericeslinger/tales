@@ -1,167 +1,237 @@
-import { Equipment } from '../../types/equipment';
+import { Action } from '../../types/action';
+import { Item } from '../../types/item';
 
-export const rapier: Equipment = {
-  type: 'weapon',
-  kind: 'melee',
-  slot: 'hand',
-  size: 1,
-  damage: 2,
-  initiative: 4,
-  effect: {},
+function weapon({
+  name,
+  initiative,
+  size,
+  damage,
+  skills,
+}: {
+  name: string;
+  initiative: number;
+  size: number;
+  damage: number;
+  skills: string[];
+}): Item {
+  return {
+    name,
+    description: `A ${name}`,
+    slot: 'hand',
+    size,
+    abilities: [
+      {
+        type: 'activate',
+        name: 'Attack',
+        description: `Basic attack with a ${name}.`,
+        category: 'attack',
+        skills,
+        costs: [
+          { type: 'initiative', cost: { type: 'concrete', cost: initiative } },
+        ],
+        effects: [
+          {
+            type: 'bonus',
+            damage: damage,
+            duration: 'roll',
+          },
+        ],
+      },
+    ],
+  };
+}
+
+export const rapier = weapon({
   name: 'Rapier',
-  equipped: true,
+  initiative: 4,
+  damage: 2,
+  size: 1,
   skills: ['fencing', 'combatinsight'],
+});
+
+export const magicRapier: Item = {
+  ...rapier,
+  abilities: [
+    ...rapier.abilities,
+    {
+      type: 'activate',
+      name: 'Attack',
+      description: 'Magical strike against a chaotic foe.',
+      category: 'attack',
+      skills: ['fencing', 'combatinsight'],
+      costs: [
+        { type: 'initiative', cost: { type: 'concrete', cost: 4 } },
+        { type: 'depletion', level: 0, target: 4 },
+      ],
+      effects: [
+        {
+          type: 'bonus',
+          damage: 2,
+          assets: 1,
+          duration: 'roll',
+        },
+      ],
+    },
+  ],
 };
 
-export const dagger: Equipment = {
-  type: 'weapon',
-  kind: 'melee',
-  slot: 'hand',
-  size: 1,
-  damage: 0,
-  initiative: 3,
-  effect: {},
+export const dagger = weapon({
   name: 'Dagger',
-  equipped: true,
-  skills: ['fencing', 'combatinsight'],
-};
-
-export const lightMace: Equipment = {
-  type: 'weapon',
-  kind: 'melee',
-  slot: 'hand',
-  size: 1,
-  damage: 2,
-  initiative: 4,
-  effect: {},
-  name: 'Light Mace',
-  equipped: true,
-  skills: ['fencing', 'combatinsight'],
-};
-
-export const staff: Equipment = {
-  type: 'weapon',
-  kind: 'melee',
-  slot: 'hand',
-  size: 2,
-  damage: 4,
-  initiative: 6,
-  effect: {},
-  name: 'Staff',
-  equipped: true,
-  skills: ['fencing', 'combatinsight'],
-};
-
-export const antimagicBlast: Equipment = {
-  type: 'weapon',
-  kind: 'ranged',
-  slot: 'hand',
-  size: 2,
-  damage: -10,
-  initiative: 6,
-  effect: {},
-  name: 'Antimagic Staff',
-  equipped: true,
-  skills: ['sniper', 'quickdraw'],
-};
-
-export const sonicBlast: Equipment = {
-  type: 'weapon',
-  kind: 'ranged',
-  slot: 'hand',
-  size: 1,
-  damage: 4,
-  initiative: 4,
-  effect: {},
-  name: 'Sonic Blast',
-  equipped: true,
-  skills: ['sniper', 'quickdraw'],
-};
-
-export const magicRapier: Equipment = {
-  type: 'weapon',
-  kind: 'melee',
-  slot: 'hand',
-  size: 1,
-  damage: 2,
-  initiative: 4,
-  effect: { assets: [{ category: 'attack', value: 1 }] },
-  name: 'Magical Rapier',
-  equipped: true,
-  skills: ['fencing', 'combatinsight'],
-};
-
-export const crossbow: Equipment = {
-  type: 'weapon',
-  kind: 'ranged',
-  slot: 'hand',
-  size: 2,
-  damage: 5,
-  initiative: 8,
-  effect: {},
-  name: 'Crossbow',
-  equipped: true,
-  skills: ['sniper', 'quickdraw'],
-};
-
-export const longbow: Equipment = {
-  type: 'weapon',
-  kind: 'ranged',
-  slot: 'hand',
-  size: 2,
-  damage: 3,
-  initiative: 6,
-  effect: {},
-  name: 'Longbow',
-  equipped: true,
-  skills: ['hurling', 'righteousfury'],
-};
-
-export const feet: Equipment = {
-  type: 'weapon',
-  kind: 'melee',
-  slot: 'body',
-  damage: 1,
   initiative: 3,
-  effect: {},
-  name: 'Unarmed Attack',
-  equipped: true,
+  damage: 0,
   size: 1,
-  skills: ['unarmedfighting'],
+  skills: ['fencing', 'combatinsight', 'sniper', 'quickdraw'],
+});
+
+export const lightMace = weapon({
+  name: 'Light Mace',
+  initiative: 4,
+  damage: 2,
+  size: 1,
+  skills: ['fencing', 'combatinsight'],
+});
+
+export const staff = weapon({
+  name: 'Staff',
+  initiative: 6,
+  damage: 4,
+  size: 2,
+  skills: ['fencing', 'combatinsight'],
+});
+
+export const crossbow = weapon({
+  name: 'Crossbow',
+  initiative: 8,
+  damage: 5,
+  size: 2,
+  skills: ['sniper', 'quickdraw'],
+});
+
+export const magicCrossbow: Item = {
+  ...crossbow,
+  name: 'Blood Crossbow',
+  depleted: false,
+  abilities: [
+    ...crossbow.abilities,
+    {
+      type: 'activate',
+      name: 'Imbue with Blood',
+      description:
+        'You pour a little bit of your soul into the crossbow. It appreciates the donation.',
+      costs: [
+        { type: 'depletion', level: 0, target: 4 },
+        { type: 'pool', pool: ['health'], cost: { type: 'concrete', cost: 1 } },
+      ],
+      effects: [
+        {
+          duration: 'next',
+          type: 'bonus',
+          damage: 10,
+        },
+      ],
+      category: 'attack',
+    },
+  ],
 };
 
-export const stoneCloak: Equipment = {
-  type: 'armor',
-  slot: 'body',
-  size: 1,
-  effect: { assets: [{ category: 'defense', value: 1 }] },
-  equipped: true,
+export const longbow = weapon({
+  name: 'Crossbow',
+  initiative: 6,
+  damage: 3,
+  size: 2,
+  skills: ['hurling', 'righteousfury'],
+});
+
+export const stoneCloak: Item = {
   name: 'Stone Cloak',
-};
-
-export const shield: Equipment = {
-  type: 'armor',
+  description:
+    'A cloak the same color and consistency of old stone, it provides additional defense as well as camouflage.',
   slot: 'body',
   size: 1,
-  effect: { edge: [{ category: 'defense', value: 1 }] },
-  equipped: true,
+  depleted: false,
+  abilities: [
+    {
+      type: 'automatic',
+      name: 'Defensive Assist',
+      description:
+        'The stone cloak swirls of its own accord, confounding your foe',
+      category: 'defense',
+      effects: [
+        {
+          type: 'bonus',
+          assets: 1,
+          duration: 'roll',
+        },
+      ],
+      costs: [{ type: 'depletion', target: 3, level: 0 }],
+    },
+    {
+      type: 'automatic',
+      name: 'Defensive Assist',
+      description: 'The stone cloak helps you hide.',
+      category: 'noncombat',
+      skills: ['sneaking'],
+      effects: [
+        {
+          type: 'bonus',
+          assets: 1,
+          duration: 'roll',
+        },
+      ],
+      costs: [{ type: 'depletion', target: 3, level: 0 }],
+    },
+  ],
+};
+
+export const shield: Item = {
   name: 'Shield',
+  description: 'A simple shield.',
+  slot: 'hand',
+  size: 1,
+  abilities: [
+    {
+      type: 'automatic',
+      name: 'Shield Bonus',
+      description: 'You use your shield to aid your defense',
+      category: 'defense',
+      effects: [
+        {
+          type: 'bonus',
+          edge: 1,
+          duration: 'roll',
+        },
+      ],
+      costs: [],
+    },
+    {
+      type: 'automatic',
+      name: 'Shield Nonproficency Penalty',
+      description: 'Your shield hinders your attack',
+      category: 'attack',
+      effects: [
+        {
+          type: 'bonus',
+          assets: -1,
+          duration: 'roll',
+        },
+      ],
+      costs: [],
+    },
+  ],
 };
 
-export const nonproficiencyPenalty: Equipment = {
-  type: 'other',
-  name: 'Shield Nonproficiency Penalty',
-  equipped: true,
-  size: 0,
-  slot: 'body',
-  effect: { assets: [{ category: 'attack', value: -1 }] },
-};
-
-export const rapidStrike: Equipment = {
-  type: 'other',
-  name: 'Rapid Strike',
-  equipped: true,
-  size: 0,
-  slot: 'body',
-  effect: { initiative: -1, edge: [{ category: 'attack', value: 0 }] },
+export const feet: Action = {
+  name: 'Unarmed Strike',
+  type: 'activate',
+  costs: [{ type: 'initiative', cost: { type: 'concrete', cost: 3 } }],
+  effects: [
+    {
+      type: 'bonus',
+      damage: 2,
+      duration: 'roll',
+    },
+  ],
+  category: 'attack',
+  skills: ['unarmedcombat'],
+  description: 'With fists and feet of fury, pummel your foes.',
 };

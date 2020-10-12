@@ -1,4 +1,7 @@
-export function attr(v, e, n) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.skillBlock = exports.attr = void 0;
+function attr(v, e, n) {
     return {
         name: n,
         edge: e,
@@ -7,7 +10,8 @@ export function attr(v, e, n) {
         wound: false,
     };
 }
-export function skillBlock(base, { inept, proficient, trained, expert }) {
+exports.attr = attr;
+function skillBlock(base, { inept, proficient, trained, expert }) {
     return base.map((skill) => {
         if (inept.includes(skill.skillId)) {
             return { ...skill, level: 'inept' };
@@ -24,3 +28,4 @@ export function skillBlock(base, { inept, proficient, trained, expert }) {
         return { ...skill, level: 'unskilled' };
     });
 }
+exports.skillBlock = skillBlock;

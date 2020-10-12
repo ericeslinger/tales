@@ -1,4 +1,4 @@
-import { CharacterService } from 'src/app/data/character.service';
+import { CharacterService } from 'src/app/components/characters/character.service';
 import { CreateComponent } from './create.component';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';

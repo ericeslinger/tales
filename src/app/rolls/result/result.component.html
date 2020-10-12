@@ -1,0 +1,22 @@
+<div class="result">
+  <div class="description">
+    {{ (character | async)?.name }} made a {{ result.type }} check using
+    {{ result.skill.name }} with {{ result.attribute }}.
+  </div>
+  <div class="outcome" *ngIf="result.target; else open">
+    Target: {{ result.target }}, result {{ result.result }}.
+    {{result.success ? 'Success' : 'Failure'}}.
+  </div>
+  <ng-template #open>
+    <div class="outcome">Result {{result.result}}</div>
+  </ng-template>
+  <div class="outcome" *ngIf="result.type === 'attack' && result.success">
+    {{ result.damage + result.result - result.target }} damage.
+  </div>
+  <div class="outcome" *ngIf="result.type === 'defense' && !result.success">
+    {{ result.damage + result.target - result.result}} damage.
+  </div>
+  <div class="outcome" *ngIf="result.type === 'health' && !result.success">
+    Wound taken.
+  </div>
+</div>

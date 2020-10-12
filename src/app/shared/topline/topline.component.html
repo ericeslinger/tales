@@ -1,0 +1,37 @@
+<div class="topline mat-elevation-z1">
+  <button mat-button *ngIf="loggedIn | async" [matMenuTriggerFor]="userMenu">
+    <framesystem-person-image [size]="48" [person]="user | async">
+    </framesystem-person-image>
+  </button>
+  <h2 class="title">{{title | async}}</h2>
+  <span class="spacer"></span>
+  <button mat-icon-button matBadgePosition="after" matBadgeColor="alert"
+      [matBadge]="(notifications | async)?.length" *ngIf="loggedIn | async"
+      [matBadgeHidden]="! ((notifications|async)?.length > 0)">
+    <mat-icon>notifications</mat-icon>
+  </button>
+  <button mat-icon-button [matMenuTriggerFor]="moreMenu"
+      *ngIf="!(loggedIn | async)">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+</div>
+
+<mat-menu #moreMenu>
+  <button mat-menu-item [routerLink]="'/rules'">Rules</button>
+  <button mat-menu-item (click)="login()">
+    <span>Log In</span>
+  </button>
+</mat-menu>
+
+<mat-menu #userMenu>
+  <button mat-menu-item
+      [routerLink]="'/users/'+(user|async)?.userId">Profile</button>
+  <button mat-menu-item [routerLink]="'/rules'">Rules</button>
+  <button mat-menu-item [matMenuTriggerFor]="campaignList">Campaigns</button>
+  <button mat-menu-item (click)="logout()">Log out</button>
+</mat-menu>
+
+<mat-menu #campaignList class="campaignMenu">
+  <button mat-menu-item *ngFor="let campaign of campaigns | async"
+      [routerLink]="['/campaigns', campaign.campaignId]">{{campaign.name}}</button>
+</mat-menu>

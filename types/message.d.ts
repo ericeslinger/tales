@@ -19,30 +19,6 @@ export interface BaseMessage {
   at: Date | Timestamp;
 }
 
-export interface RollRequest extends BaseMessage {
-  messageType: 'rollRequest';
-  type: SkillType;
-  assets: number;
-  edge: number;
-  skills?: string[];
-  target?: number;
-  damage?: number;
-  initiative?: number;
-  attributes?: AttributeName[];
-  items?: Equipment[];
-}
-
-export interface RollComplete extends BaseMessage {
-  messageType: 'rollComplete';
-  skill: CharacterSkill;
-  attribute: string;
-  result: number;
-  effort: number;
-  success?: boolean;
-}
-
 export interface Say extends BaseMessage {
   messageType: 'say';
 }
-
-export type Message = RollRequest | RollComplete | Say;

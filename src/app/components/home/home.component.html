@@ -1,8 +1,11 @@
 <h2>Your Campaigns:</h2>
 <ul>
   <li *ngFor="let campaign of presentation.campaigns">
-    <a [routerLink]="linkToCampaign(campaign)">
+    <a [routerLink]="['/campaigns', campaign.campaignId]">
       {{ campaign.name }}
     </a>
   </li>
 </ul>
+<button mat-raised-button (click)="logout()" color="primary">
+  <mat-icon>logout</mat-icon> Log Out
+</button>
